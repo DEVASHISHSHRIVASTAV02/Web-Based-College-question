@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookie Management</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #f4f4f4;
+      }
+      h2 {
+        color: #333;
+        text-align: center;
+      }
+      .form-container,
+      .cookie-display {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+      .form-container input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      .form-container input[type="button"] {
+        background-color: #28a745;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .form-container input[type="button"]:hover {
+        background-color: #218838;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid #ccc;
+      }
+      th,
+      td {
+        padding: 10px;
+        text-align: left;
+      }
+      th {
+        background-color: #007bff;
+        color: white;
+      }
+      .refresh-btn {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        display: block;
+        margin: 10px auto;
+        text-align: center;
+        text-decoration: none;
+      }
+      .refresh-btn:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h2>Set Cookie</h2>
+      <input type="text" id="cookieName" placeholder="Cookie Name" />
+      <input type="text" id="cookieValue" placeholder="Cookie Value" />
+      <input type="button" value="Set Cookie" onclick="setCookie()" />
+    </div>
+
+    <div class="cookie-display">
+      <h2>Existing Cookies</h2>
+      <a href="#" class="refresh-btn" onclick="readCookies()"
+        >Refresh Cookies</a
+      >
+      <table id="cookieTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody id="cookieTableBody"></tbody>
+      </table>
+    </div>
+
+    <script>
+      // Function to set a cookie
+      function setCookie() {
+        const name = document.getElementById("cookieName").value;
+        const value = document.getElementById("cookieValue").value;
+        if (name && value) {
+          // Set cookie with 1-day expiration
+          const date = new Date();
+          date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
+          const expires = "expires=" + date.toUTCString();
+          document.cookie = `${name}=${value};${expires};path=/`;
+          document.getElementById("cookieName").value = "";
+          document.getElementById("cookieValue").value = "";
+          readCookies(); // Refresh cookie list
+        } else {
+          alert("Please enter both cookie name and value");
+        }
+      }
+
+      // Function to read and display cookies
+      function readCookies() {
+        const tableBody = document.getElementById("cookieTableBody");
+        tableBody.innerHTML = ""; // Clear existing rows
+        const cookies = document.cookie.split(";");
+        cookies.forEach((cookie) => {
+          if (cookie.trim()) {
+            const [name, value] = cookie.split("=").map((str) => str.trim());
+            const row = document.createElement("tr");
+            row.innerHTML = `<td>${name}</td><td>${value}</td>`;
+            tableBody.appendChild(row);
+          }
+        });
+      }
+
+      // Initial load of cookies
+      window.onload = readCookies;
+    </script>
+  </body>
+</html>

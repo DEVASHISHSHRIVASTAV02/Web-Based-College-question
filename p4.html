@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Student Record Form</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Algerian&display=swap");
+      body {
+        font-family: "Algerian", sans-serif;
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        background: url("https://source.unsplash.com/random/1600x900/?education,books")
+          no-repeat center center/cover;
+        margin: 0;
+      }
+
+      form {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        width: 100%;
+        max-width: 400px;
+        animation: fadeIn 1s ease-in-out;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      h2 {
+        text-align: center;
+        color: #4caf50;
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
+      label {
+        display: block;
+        margin-top: 10px;
+        font-weight: 600;
+      }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 2px solid #4caf50;
+        border-radius: 5px;
+        transition: all 0.3s ease-in-out;
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: #45a049;
+        box-shadow: 0 0 8px rgba(72, 239, 128, 0.5);
+      }
+      .error {
+        color: red;
+        font-size: 0.9em;
+        margin-top: 3px;
+      }
+      button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        margin-top: 20px;
+        cursor: pointer;
+        width: 100%;
+        border-radius: 5px;
+        font-size: 1.1em;
+        transition: transform 0.2s ease-in-out, background 0.3s ease;
+      }
+      button:hover {
+        background-color: #45a049;
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+  <body>
+    <form id="studentForm" onsubmit="return validateForm()">
+      <h2>Student Record Form</h2>
+
+      <label for="name">Student Name:</label>
+      <input type="text" id="name" name="name" />
+      <div class="error" id="nameError"></div>
+
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" />
+      <div class="error" id="ageError"></div>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" />
+      <div class="error" id="emailError"></div>
+
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender">
+        <option value="">Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+      <div class="error" id="genderError"></div>
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" />
+      <div class="error" id="phoneError"></div>
+
+      <label for="address">Address:</label>
+      <textarea id="address" name="address"></textarea>
+
+      <label for="hobbies">Hobbies:</label>
+      <select id="hobbies" name="hobbies">
+        <option value="">Select Hobby</option>
+        <option value="Reading">Reading</option>
+        <option value="Sports">Sports</option>
+        <option value="Music">Music</option>
+        <option value="Traveling">Traveling</option>
+        <option value="Gaming">Gaming</option>
+      </select>
+
+      <label for="field">Field of Study:</label>
+      <input type="text" id="field" name="field" />
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      function validateForm() {
+        let valid = true;
+
+        const name = document.getElementById("name").value.trim();
+        const age = document.getElementById("age").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const gender = document.getElementById("gender").value;
+        const phone = document.getElementById("phone").value.trim();
+
+        document.getElementById("nameError").innerText = name
+          ? ""
+          : "Name is required.";
+        document.getElementById("ageError").innerText =
+          age && age > 0 ? "" : "Please enter a valid age.";
+        document.getElementById("emailError").innerText =
+          /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+            ? ""
+            : "Invalid email format.";
+        document.getElementById("genderError").innerText = gender
+          ? ""
+          : "Please select a gender.";
+        document.getElementById("phoneError").innerText = /^[0-9]{10}$/.test(
+          phone
+        )
+          ? ""
+          : "Phone number must be 10 digits.";
+
+        valid =
+          name &&
+          age > 0 &&
+          /^[^\s@]+@[^?\s@]+\.[^?\s@]+$/.test(email) &&
+          gender &&
+          /^[0-9]{10}$/.test(phone);
+
+        return valid;
+      }
+    </script>
+  </body>
+</html>

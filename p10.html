@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>jQuery Selectors Example</title>
+    <style>
+      .highlight {
+        color: crimson;
+        font-weight: bold;
+      }
+      input {
+        margin: 5px;
+      }
+    </style>
+
+    <!-- ? jQuery library (must come BEFORE your script) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $("#apply").click(function () {
+          // Tag selector: highlight all paragraphs
+          $("p").css("background-color", "Blue");
+
+          // Class selector: add custom style to elements with class "special"
+          $(".special").addClass("highlight");
+
+          // ID selector: change the text of the element with ID "unique"
+          $("#unique").text("This paragraph's content has been updated!");
+
+          // Attribute selector: style the email input field
+          $("input[type='email']").css("border", "2px solid blue");
+        });
+      });
+    </script>
+    <script>
+      $(document).ready(function () {
+        $("input").focus(function () {
+          $(this).css("background-color", "yellow");
+        });
+        $("input").blur(function () {
+          $(this).css("background-color", "Aqua");
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h2>Working with jQuery Selectors</h2>
+
+    <!-- Paragraphs with different selectors -->
+    <p>This is a regular paragraph.</p>
+    <p class="special">This is a paragraph with a class.</p>
+    <p id="unique">This paragraph has a unique ID.</p>
+
+    <!-- Form fields -->
+    <input type="text" name="username" placeholder="Enter your username" />
+    <input type="email" name="email" placeholder="Enter your email" />
+
+    <!-- Button to trigger jQuery actions -->
+    <br /><br />
+    <button id="apply">Apply jQuery Selectors</button>
+  </body>
+</html>

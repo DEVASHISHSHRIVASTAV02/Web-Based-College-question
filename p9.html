@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple jQuery Example</title>
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <h2>Click the Button to Change the Text</h2>
+    
+    <p id="text">This is the original text.</p>
+    
+    <button id="changeBtn">Change Text</button>
+
+    <script>
+        $(document).ready(function(){
+            $("#changeBtn").click(function(){
+                $("#text").text("The text has been changed using jQuery!");
+            });
+        });
+    </script>
+
+</body>
+</html>

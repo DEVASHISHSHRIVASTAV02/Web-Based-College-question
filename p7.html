@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beautiful AJAX Message</title>
+    <style>
+      /* Reset default styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Body styling with black background and white text */
+      body {
+        background-color: #000000;
+        color: #ffffff;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      /* Heading styling */
+      h2 {
+        font-size: 2rem; /* 32px */
+        margin-bottom: 1.5rem;
+        text-align: center;
+        font-weight: 600;
+      }
+
+      /* Button styling */
+      button {
+        padding: 12px 24px;
+        background-color: #ffffff;
+        color: #000000;
+        border: 2px solid #4caf50;
+        border-radius: 8px;
+        font-size: 1.125rem; /* 18px */
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #e63946; /* Red hover effect */
+        color: #ffffff;
+        border-color: #e63946;
+        transform: translateY(-2px); /* Subtle lift effect */
+      }
+
+      button:active {
+        transform: translateY(0); /* Reset lift on click */
+      }
+
+      /* Message box styling */
+      #messageBox {
+        margin-top: 2rem;
+        font-size: 1.25rem; /* 20px */
+        font-weight: 500;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+
+      /* Fade-in effect when message appears */
+      #messageBox.show {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Click the Button to See the Message!</h2>
+    <button onclick="loadMessage()">Click Me</button>
+    <div id="messageBox"></div>
+
+    <script>
+      function loadMessage() {
+        setTimeout(function () {
+          const messageBox = document.getElementById("messageBox");
+          messageBox.innerHTML = "Hi Hello How r u???";
+          messageBox.classList.add("show"); // Add class for fade-in effect
+        }, 500);
+      }
+    </script>
+  </body>
+</html>

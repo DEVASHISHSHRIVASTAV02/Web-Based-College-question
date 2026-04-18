@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>jQuery Multiple Button Actions</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 10px;
+      }
+
+      #output {
+        margin-top: 20px;
+        font-size: 18px;
+      }
+
+      #image {
+        margin-top: 15px;
+        display: none;
+        width: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h2>Sample Action Buttons</h2>
+    </center>
+    <br />
+    <br /><br /><br />
+
+    <button id="btnColor">Change Button Color</button>
+    <button id="btnText">Show Text</button>
+    <button id="btnImage">Show Image</button>
+    <button id="btnReset">Reset</button>
+
+    <div id="output"></div>
+    <img
+      id="image"
+      src="C:\Users\Public\Pictures\Sample Pictures\Penguins.jpg"
+    />
+
+    <script>
+      // Button 1: Change background color
+      $("#btnColor").click(function () {
+        $(this).css("background-color", "Red");
+        $(this).css("color", "white");
+        $(this).text("Color Changed!");
+      });
+
+      // Button 2: Show text in output div
+      $("#btnText").click(function () {
+        $("#output").text("Hello! I am Devashish Shrivastav.");
+      });
+
+      // Button 3: Show image
+      $("#btnImage").click(function () {
+        $("#image").fadeIn();
+      });
+
+      // Button 4: Reset everything
+      $("#btnReset").click(function () {
+        $("button")
+          .css({ "background-color": "", color: "" })
+          .text(function (index, text) {
+            const defaultTexts = [
+              "Change Background Color",
+              "Show Text",
+              "Show Image",
+              "Reset",
+            ];
+            return defaultTexts[index];
+          });
+        $("#output").text("");
+        $("#image").fadeOut();
+      });
+    </script>
+  </body>
+</html>
